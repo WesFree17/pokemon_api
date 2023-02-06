@@ -1,24 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, setUseState, useEffect } from "react";
+import Axios from "axios";
+// import PokemonList from './components/PokemonList.jsx';
 
 function App() {
+
+  const [pokemonName, setPokemonName] = useState("");
+  const [pokemon, setPokemon] = useState({});
+
+  const searchPokemon = () => {
+    Axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`).then((response) => {
+      setPokemon({
+      });
+    })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+      <div className="App">
+        <div className="Title">
+          <h1>Pokemon API</h1>
+          <input type="text" onChange={(event) => {setPokemonName(event.target.value);}}></input>
+          <button onClick={searchPokemon}>Search Pokemon</button>
+        </div>
+      </div>
+
   );
 }
 
